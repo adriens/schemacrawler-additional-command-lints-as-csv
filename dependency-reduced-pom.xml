@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.github.adriens</groupId>
+  <artifactId>schemacrawler-additional-command-csv</artifactId>
+  <name>SchemaCrawler csv lint exporter</name>
+  <version>1.1-SNAPSHOT</version>
+  <description>Schemacrawler command extension that produces a csv
+        of the lints, hence making it integrable wth other reporting tools.</description>
+  <url>https://github.com/adriens/schemacrawler-additional-command-lints-as-csv</url>
+  <issueManagement>
+    <system>GitHub Issues</system>
+    <url>https://github.com/adriens/schemacrawler-additional-command-lints-as-csv/issues</url>
+  </issueManagement>
+  <inceptionYear>2018</inceptionYear>
+  <scm>
+    <connection>scm:git:git://github.com/adriens/schemacrawler-additional-command-lints-as-csv.git</connection>
+    <developerConnection>scm:git:git@github.com:adriens/schemacrawler-additional-command-lints-as-csv.git</developerConnection>
+    <url>https://github.com/adriens/schemacrawler-additional-command-lints-as-csv/issues</url>
+  </scm>
+  <organization>
+    <name>github</name>
+    <url>https://github.com/adriens/schemacrawler-additional-command-lints-as-csv</url>
+  </organization>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
+        <configuration>
+          <source>8</source>
+          <target>8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>${maven-shade-plugin.version}</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration />
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>hamcrest-core</artifactId>
+          <groupId>org.hamcrest</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+      <version>2.4.1</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+  <properties>
+    <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+    <schemacrawler.version>15.01.02</schemacrawler.version>
+    <maven-shade-plugin.version>3.2.0</maven-shade-plugin.version>
+    <commons-csv.version>1.5</commons-csv.version>
+    <hsqldb.version>2.4.1</hsqldb.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <junit.version>4.11</junit.version>
+  </properties>
+</project>

@@ -3,11 +3,27 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.adriens</groupId>
     <artifactId>schemacrawler-additional-command-csv</artifactId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
     <name>SchemaCrawler csv lint exporter</name>
     <description>Schemacrawler command extension that produces a csv
-    of the lints, hence making it integrable wth other reporting tools.
+        of the lints, hence making it integrable wth other reporting tools.
     </description>
+    <inceptionYear>2018</inceptionYear>
+    <url>https://github.com/adriens/schemacrawler-additional-command-lints-as-csv</url>
+    <organization>
+        <name>github</name>
+        <url>https://github.com/adriens/schemacrawler-additional-command-lints-as-csv</url>
+    </organization>
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/adriens/schemacrawler-additional-command-lints-as-csv/issues</url>
+    </issueManagement>
+    <scm>
+        <connection>scm:git:git://github.com/adriens/schemacrawler-additional-command-lints-as-csv.git</connection>
+        <developerConnection>scm:git:git@github.com:adriens/schemacrawler-additional-command-lints-as-csv.git</developerConnection>
+        <url>https://github.com/adriens/schemacrawler-additional-command-lints-as-csv/issues</url>
+    </scm>
+    
     <properties>
         <!-- Core properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
