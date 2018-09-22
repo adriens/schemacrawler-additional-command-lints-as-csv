@@ -14,7 +14,7 @@
         <schemacrawler.version>15.01.02</schemacrawler.version>
     
         <!-- dependencies versions -->
-        <junit.version>4.11</junit.version>
+        <junit.version>4.12</junit.version>
         <hsqldb.version>2.4.1</hsqldb.version>
         <commons-csv.version>1.5</commons-csv.version>
         
