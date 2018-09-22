@@ -1,0 +1,18 @@
+--- Command ---
+
+-command=csv
+  Runs the new plugin command
+  
+--- Output Options ---
+-dbid=<database id>
+  Optional
+  Alphanumeric value of your choice, same concept as Oracle DBID.
+  Allows to attach lints to a given database instance so
+  you can follow its metrics day after day, build after build
+  on  a temporal basis.
+
+-debenv=<database environment>
+  Optional
+  The environment of the target database : can be any short string
+  you want. For eviden usage, they will all be stored lowercased
+   Example for common values : prod,dev,int
