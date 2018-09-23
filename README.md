@@ -36,8 +36,12 @@ You then get a csv file called : `schemacrawler-lints-<UUID>.csv` in your workin
 You can contribute code, but also your own dashoard realizations. Therefore, just make a PR that :
 
 - add an image to the `img` directory
-- add the screenshot to the dedicated `SCREENSHOTS.md` file or a link to a video : any cool demo is welcome  
+- add the screenshot to the dedicated `SCREENSHOTS.md` file or a link to a video : any cool demo is welcome
 
-See [linkedIn article](https://www.linkedin.com/pulse/continuous-database-linting-dashboards-bring-analytics-adrien-sales/) for more details.
+# Contribute ideas
+
+If you have ideas for dashboard but don't know how to create them, but still are convinced that the are interesting, please fill an issue on the project, explaining what you'd like to produce. A hand made drawing can also be a very good beginning !
+
+See [linkedIn article](https://www.linkedin.com/pulse/continuous-database-linting-dashboards-bring-analytics-adrien-sales/) for more details or visit the dedicated [Pinterest album](https://www.pinterest.com/rastadidi/schemacrawler-lint-dashboards/).
 
 ![Simple Kibana dashboard screenshot](img/COVER.png "Screenshot")
