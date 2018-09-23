@@ -31,6 +31,13 @@ This `jar` adds the following command with the following options :
 
 You then get a csv file called : `schemacrawler-lints-<UUID>.csv` in your working dir.
 
+# Contribute
+
+You can contribute code, but also your own dashoard realizations. Therefore, just make a PR that :
+
+- add an image to the `img` directory
+- add the screenshot to the dedicated `SCREENSHOTS.md` file or a link to a video : any cool demo is welcome  
+
 See [linkedIn article](https://www.linkedin.com/pulse/continuous-database-linting-dashboards-bring-analytics-adrien-sales/) for more details.
 
 ![Simple Kibana dashboard screenshot](img/COVER.png "Screenshot")
