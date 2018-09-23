@@ -7,7 +7,7 @@ An additional [command](http://www.schemacrawler.com/plugins.html) for
 [schemacrawler](http://www.schemacrawler.com/) to dump lints as csv files,
 with some additional fields.
 
-See [linkedIn article](https://www.linkedin.com/pulse/continuous-database-linting-dashboards-bring-analytics-adrien-sales/) for more details.
+See [linkedIn article](https://www.linkedin.com/pulse/continuous-database-linting-dashboards-bring-analytics-adrien-sales/) for more details or check the [Pinterest album for more samples](https://www.pinterest.com/rastadidi/schemacrawler-lint-dashboards/)
 
 # Install steps
 
