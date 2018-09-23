@@ -31,4 +31,4 @@ You then get a csv file called : `schemacrawler-lints-<UUID>.csv` in your workin
 
 See [linkedIn article](https://www.linkedin.com/pulse/continuous-database-linting-dashboards-bring-analytics-adrien-sales/) for more details.
 
-![Simple Kibana dashboard screenshot](COVER.png "Screenshot")
+![Simple Kibana dashboard screenshot](img/COVER.png "Screenshot")
