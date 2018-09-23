@@ -4,5 +4,4 @@
 # schemacrawler-additional-command-lints-as-csv
 An additional command for schemacrawler to dump lints as csv files.
 
-This project is under development. An rticle is coming very soon
-to show what can be done with that.
+See [linkedIn article](https://www.linkedin.com/pulse/continuous-database-linting-dashboards-bring-analytics-adrien-sales/) for more details.
