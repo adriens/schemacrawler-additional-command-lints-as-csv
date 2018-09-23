@@ -42,6 +42,8 @@ You can contribute code, but also your own dashoard realizations. Therefore, jus
 
 If you have ideas for dashboard but don't know how to create them, but still are convinced that the are interesting, please fill an issue on the project, explaining what you'd like to produce. A hand made drawing can also be a very good beginning !
 
+# Details and samples
+
 See [linkedIn article](https://www.linkedin.com/pulse/continuous-database-linting-dashboards-bring-analytics-adrien-sales/) for more details or visit the dedicated [Pinterest album](https://www.pinterest.com/rastadidi/schemacrawler-lint-dashboards/).
 
 ![Simple Kibana dashboard screenshot](img/COVER.png "Screenshot")
