@@ -23,9 +23,9 @@ This `jar` adds the following command with the following options :
 -c=csv -dbid=666 -dbenv=hell
 ```
 
-`-c=csv` : tells that we want to dump the lints as a csv file
-`-dbis`  : optional paramater if you want to stick on a given database
-`-dbenv` : optional paramater if you want to tag a database to an environment (typically prod, dev, test, ...)
+- `-c=csv` : tells that we want to dump the lints as a csv file
+- `-dbis`  : optional paramater if you want to stick on a given database
+- `-dbenv` : optional paramater if you want to tag a database to an environment (typically prod, dev, test, ...)
 
 You then get a csv file called : `schemacrawler-lints-<UUID>.csv` in your working dir.
 
