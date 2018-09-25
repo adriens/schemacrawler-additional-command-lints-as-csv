@@ -36,7 +36,7 @@
         <hsqldb.version>2.4.1</hsqldb.version>
         
         <!-- Lint specific dependencies -->
-        <commons-csv.version>1.5</commons-csv.version>
+        <commons-csv.version>1.6</commons-csv.version>
         
         <!-- Compile properties -->
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
