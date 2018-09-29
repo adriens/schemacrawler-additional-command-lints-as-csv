@@ -1,6 +1,9 @@
 package com.github.adriens;
 
 import java.io.FileWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -9,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import schemacrawler.schema.Schema;
+import schemacrawler.schema.Table;
 
 import schemacrawler.tools.executable.BaseSchemaCrawlerCommand;
 import schemacrawler.tools.lint.Lint;
@@ -36,8 +41,10 @@ public class AdditionalCommand
     //public static final String DEFAULT_LINTS_FILENAME = "lints.csv";
     private String lintsFilename;
     private static final String DEFAULT_LINTS_FILENAME_PREFIX = "schemacrawler-lints";
+    private static final String DEFAULT_LINTS_FILENAME_PREFIX_ROWCOUNT = "schemacrawler-tables";
     private static final String NEW_LINE_SEPARATOR = "\n";
     private static final Object[] FILE_HEADER = {"sclint-dbenv,sclint-dbid,sclint-runid","sclint-hitid","sclint-linterId", "sclint-severity", "sclint-objectName", "sclint-message", "sclint-value"};
+    private static final Object[] FILE_HEADER_TABLE_ROW_COUNT = {"sclint-dbenv","sclint-dbid","sclint-runid","sclint-hitid","sclint-tableFullName", "sclint-tableName", "sclint-schemaName", "sclint-tableType", "sclint-tableNbColumns", "sclint-tableNbRows"};
 
     protected AdditionalCommand() {
         super(COMMAND);
@@ -112,6 +119,14 @@ public class AdditionalCommand
         fileWriter.flush();
         fileWriter.close();
         LOGGER.log(Level.INFO, String.format("Lint runid : <%s> generated.", runId.toString()));
+        
+        try{
+            generateTableRowCountCsv(dbEnv, dbId, runId);
+        }
+        catch(Exception ex){
+            LOGGER.log(Level.SEVERE, "Was not able to perform table row count operation : " + ex.getMessage());
+            throw ex; 
+        }
     }
 
     public String getLintsFilename() {
@@ -119,5 +134,72 @@ public class AdditionalCommand
     }
     public void setLintsFilename(String aLintsFilename) {
         this.lintsFilename = aLintsFilename;
+    }
+    
+    public void generateTableRowCountCsv(String aDbEnv, String aDbId, UUID aRunId) throws Exception {
+        LOGGER.log(Level.INFO, "Counting rows for each table ...");
+        String rowCountFilename = String.format("%s-%s-.csv", DEFAULT_LINTS_FILENAME_PREFIX_ROWCOUNT, aRunId.toString());
+        LOGGER.log(Level.INFO, "Putting table row count datas in <" + rowCountFilename + ">");
+        
+        CSVPrinter csvFilePrinter;
+        FileWriter fileWriter;
+        CSVFormat csvFileFormat = CSVFormat.DEFAULT.withRecordSeparator(NEW_LINE_SEPARATOR);
+        
+        fileWriter = new FileWriter(rowCountFilename);
+
+        //initialize CSVPrinter object
+        csvFilePrinter = new CSVPrinter(fileWriter, csvFileFormat);
+
+        
+        
+        for (final Schema schema : catalog.getSchemas()) {
+
+                for (final Table table : catalog.getTables(schema)) {
+                    // for each table, count the number of rows
+                    String sql = "select count(1) from " + table.getFullName();
+                    Statement stmt = null;
+                    try {
+                        stmt = connection.createStatement();
+                        ResultSet rs = stmt.executeQuery(sql);
+                        while (rs.next()) {
+                            int nbRows = rs.getInt(1);
+                            List lintDataRecord = new ArrayList();
+                            // runtime datas
+                            lintDataRecord.add(aDbEnv);
+                            lintDataRecord.add(aDbId);
+                            lintDataRecord.add(aRunId.toString());
+                            lintDataRecord.add(UUID.randomUUID().toString());
+                            
+                            // table centric datas 
+                            LOGGER.log(Level.INFO, "Found <" + nbRows + "> rows in <" + table.getFullName() + ">");
+                            String tableFullName = table.getFullName();
+                            String tableName = table.getName();
+                            String tableRemarks = table.getRemarks();
+                            String tableSchemaName = table.getSchema().getName();
+                            String tableType = table.getTableType().getTableType();
+                            int tableNbColumns = table.getColumns().size();
+                            
+                            lintDataRecord.add(tableFullName);
+                            lintDataRecord.add(tableName);
+                            lintDataRecord.add(tableSchemaName);
+                            lintDataRecord.add(tableType);
+                            lintDataRecord.add(tableNbColumns);
+                            lintDataRecord.add(nbRows + "");
+                            
+                            csvFilePrinter.printRecord(lintDataRecord);
+                            
+                            }
+                    } catch (SQLException ex) {
+                        LOGGER.log(Level.SEVERE, "Not able to count rows : " + ex.getMessage());
+                    } finally {
+                        if (stmt != null) {
+                            stmt.close();
+                        }
+                    }
+
+                }
+            }
+        fileWriter.flush();
+        fileWriter.close();
     }
 }
