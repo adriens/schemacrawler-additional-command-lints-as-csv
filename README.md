@@ -63,3 +63,9 @@ very good beginning !
 See [linkedIn article](https://www.linkedin.com/pulse/continuous-database-linting-dashboards-bring-analytics-adrien-sales/) for more details or visit the dedicated [Pinterest album](https://www.pinterest.com/rastadidi/schemacrawler-lint-dashboards/).
 
 ![Simple Kibana dashboard screenshot](img/COVER.png "Screenshot")
+
+# Youtube demos
+
+- [running lints from command line](https://www.youtube.com/watch?v=sDM_el5Pk_A)
+- [Drilling into the biggest database](https://www.youtube.com/watch?v=GQ07UoC6IWg)
+- [Drilling into objects by their size](https://www.youtube.com/watch?v=9Ttszji3Zuw)
