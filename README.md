@@ -10,6 +10,21 @@ with some additional fields.
 See [linkedIn article](https://www.linkedin.com/pulse/continuous-database-linting-dashboards-bring-analytics-adrien-sales/) for more
  details or check the [Pinterest album for more samples](https://www.pinterest.com/rastadidi/schemacrawler-lint-dashboards/)
 
+# Usage
+
+This additional schemacrawler command is dedicated to produce csv files that
+can be used to produce advanced reporting for :
+
+- database lints
+- table sizes (number of rows and columns), so you can report and monitor them, etc...
+
+Thanks to the fact that `csv` is a very common data format, it can be used to
+produce intelligence and reporting in numerous technologies. I'll focus on
+Elastic search reporting, but it would also be very efficient to produce
+analytics with any other reporting tools like [Jupyter Notebook](https://jupyter.org/)
+or [R](https://www.r-project.org/).
+
+
 # Install steps
 
 Build the jar :
