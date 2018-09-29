@@ -1,4 +1,4 @@
-# Very first dashboard
+# Examples
 
 ![Simple Kibana dashboard screenshot](img/COVER.png "Screenshot")
 
