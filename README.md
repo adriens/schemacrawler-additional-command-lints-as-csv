@@ -7,7 +7,8 @@ An additional [command](http://www.schemacrawler.com/plugins.html) for
 [schemacrawler](http://www.schemacrawler.com/) to dump lints as csv files,
 with some additional fields.
 
-See [linkedIn article](https://www.linkedin.com/pulse/continuous-database-linting-dashboards-bring-analytics-adrien-sales/) for more details or check the [Pinterest album for more samples](https://www.pinterest.com/rastadidi/schemacrawler-lint-dashboards/)
+See [linkedIn article](https://www.linkedin.com/pulse/continuous-database-linting-dashboards-bring-analytics-adrien-sales/) for more
+ details or check the [Pinterest album for more samples](https://www.pinterest.com/rastadidi/schemacrawler-lint-dashboards/)
 
 # Install steps
 
@@ -48,10 +49,14 @@ You can contribute code, but also your own dashoard realizations. Therefore, jus
 
 - add an image to the `img` directory
 - add the screenshot to the dedicated `SCREENSHOTS.md` file or a link to a video : any cool demo is welcome
+- also you can ask (fill and issue on Github for that) to contribute to the dedicated [Pinterest album](https://www.pinterest.com/rastadidi/schemacrawler-lint-dashboards/)
 
 # Contribute ideas
 
-If you have ideas for dashboard but don't know how to create them, but still are convinced that the are interesting, please fill an issue on the project, explaining what you'd like to produce. A hand made drawing can also be a very good beginning !
+If you have ideas for dashboard but don't know how to create them, but still are
+convinced that the are interesting, please fill an issue on the project,
+explaining what you'd like to produce. A hand made drawing can also be a
+very good beginning !
 
 # Details and samples
 
