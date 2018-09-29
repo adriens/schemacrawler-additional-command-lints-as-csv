@@ -20,7 +20,7 @@ can be used to produce advanced reporting for :
 
 Thanks to the fact that `csv` is a very common data format, it can be used to
 produce intelligence and reporting in numerous technologies. I'll focus on
-[Elastic search](https://www.elastic.co/) reporting, but it would also be very efficient to produce
+[Elastic Search](https://www.elastic.co/) reporting, but it would also be very efficient to produce
 analytics with any other reporting tools like [Jupyter Notebook](https://jupyter.org/)
 or [R](https://www.r-project.org/).
 
