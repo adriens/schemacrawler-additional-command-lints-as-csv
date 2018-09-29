@@ -6,4 +6,7 @@
 
 ![Identify biggest schemas and drill into tables](img/identify-biggest-schemas-up-to-table.png "Screenshot")
 
+![Databases sizes heatmap](img/table-sizes-heatmap.png "Screenshot")
+
+
 # Put yours here ;-p
