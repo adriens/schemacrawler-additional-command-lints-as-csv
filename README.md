@@ -40,7 +40,7 @@ Therefore, you have two logstash configuration files samples :
 - for lints, check `logstash-lints.conf`
 - for table datas, check `logstash-tables.conf`
 
-**For each, customize index names and `input.file.path` according to your needs.**
+**For each, you have to customize index names and `input.file.path` according to your needs.**
 
 # Contribute
 
