@@ -29,7 +29,18 @@ This `jar` adds the following command with the following options :
 - `-dbid`  : optional paramater if you want to stick on a given database
 - `-dbenv` : optional paramater if you want to tag a database to an environment (typically prod, dev, test, ...)
 
-You then get a csv file called : `schemacrawler-lints-<UUID>.csv` in your working dir.
+You then get two `csv` files in your working directory :
+
+- `schemacrawler-lints-<UUID>.csv` : this file contains lint outputs
+- `schemacrawler-tables-<UUID>.csv` : this file contains datas reporting number of rows and columns of tables, with schema, tableName, ...
+
+To load these two files, you need dedicated [logstash]{https://www.elastic.co/products/logstash} configuration files.
+Therefore, you have two logstash configuration files samples :
+
+- for lints, check `logstash-lints.conf`
+- for table datas, check `logstash-tables.conf`
+
+**For each, customize index names and `input.file.path` according to your needs.**
 
 # Contribute
 
