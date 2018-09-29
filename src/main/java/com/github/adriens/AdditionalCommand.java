@@ -150,10 +150,7 @@ public class AdditionalCommand
         //initialize CSVPrinter object
         csvFilePrinter = new CSVPrinter(fileWriter, csvFileFormat);
 
-        
-        
         for (final Schema schema : catalog.getSchemas()) {
-
                 for (final Table table : catalog.getTables(schema)) {
                     // for each table, count the number of rows
                     String sql = "select count(1) from " + table.getFullName();
@@ -196,7 +193,6 @@ public class AdditionalCommand
                             stmt.close();
                         }
                     }
-
                 }
             }
         fileWriter.flush();
