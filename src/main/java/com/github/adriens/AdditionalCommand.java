@@ -47,6 +47,12 @@ public class AdditionalCommand
     private static final String NEW_LINE_SEPARATOR = "\n";
     private static final Object[] FILE_HEADER = {"sclint-dbenv,sclint-dbid,sclint-runid", "sclint-hitid", "sclint-linterId", "sclint-severity", "sclint-objectName", "sclint-message", "sclint-value"};
     private static final Object[] FILE_HEADER_TABLE_ROW_COUNT = {"sclint-dbenv", "sclint-dbid", "sclint-runid", "sclint-hitid", "sclint-tableFullName", "sclint-tableName", "sclint-schemaName", "sclint-tableType", "sclint-tableNbColumns", "sclint-tableNbRows"};
+    private static final Object[] FILE_HEADER_TABLE_COLUMNS = {"sclint-dbenv", "sclint-dbid", "sclint-runid", "sclint-schema-name", "sclint-table-name",
+        "sclint-table-fullname", "sclint-table-remarks", "sclint-table-type", "sclint-column-short-name",
+        "sclint-column-name", "sclint-column-fullname", "sclint-column-ordinal-position",
+        "sclint-column-remarks", "sclint-column-default-value", "sclint-column-size",
+        "sclint-column-type-typename", "sclint-column-type-fullname", "sclint-column-type-name",
+        "sclint-column-type-java-sqltype-group"};
 
     protected AdditionalCommand() {
         super(COMMAND);
@@ -248,7 +254,6 @@ public class AdditionalCommand
                     //column.getColumnDataType().getBaseType().getFullName().toString();
                     //column.getColumnDataType().getBaseType().getJavaSqlType().getName();
                     //column.getColumnDataType().getBaseType().getJavaSqlType().getJavaSqlTypeGroup().toString();
-
                     List lintDataRecord = new ArrayList();
                     //runtime datas
                     lintDataRecord.add(aDbEnv);
