@@ -35,6 +35,12 @@ mvn clean package
 
 then copy the jar to `$SCHEMACRAWLER_HOME/lib` and you're done with install steps.
 
+To get help, simply run :
+
+```
+schemacrawler -help -c=csv
+```
+
 This `jar` adds the following command with the following options :
 
 ```
