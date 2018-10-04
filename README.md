@@ -55,12 +55,14 @@ For each run, you then get two `csv` files in your working directory :
 
 - `schemacrawler-lints-<UUID>.csv` : this file contains lint outputs
 - `schemacrawler-tables-<UUID>.csv` : this file contains datas reporting number of rows and columns of tables, with schema, tableName, ...
+- `schemacrawler-columns-<UUID>.csv` : this file contains datas about table/columns
 
 To load these two files, you need two dedicated [logstash](https://www.elastic.co/products/logstash) configuration files.
 Therefore, you have two logstash configuration files samples :
 
 - for lints, check `logstash-lints.conf`
 - for table datas, check `logstash-tables.conf`
+- for column datas, check `logstash-columns.conf`
 
 **For each, you have to customize index names and `input.file.path` according to your needs.**
 
