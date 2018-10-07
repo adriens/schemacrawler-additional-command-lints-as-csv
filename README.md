@@ -51,7 +51,7 @@ This `jar` adds the following command with the following options :
 - `-dbid`  : optional paramater if you want to stick on a given database
 - `-dbenv` : optional paramater if you want to tag a database to an environment (typically prod, dev, test, ...)
 
-For each run, you then get two `csv` files in your working directory :
+For each run, you then get the following `csv` files in your working directory :
 
 - `schemacrawler-lints-<UUID>.csv` : this file contains lint outputs
 - `schemacrawler-tables-<UUID>.csv` : this file contains datas reporting number of rows and columns of tables, with schema, tableName, ...
