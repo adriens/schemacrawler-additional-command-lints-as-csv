@@ -106,9 +106,13 @@ public class AdditionalCommand
         //Create CSV file header
         // Do not print headers
         //csvFilePrinter.printRecord(FILE_HEADER);
+        
         while (lintIter.hasNext()) {
             aLint = lintIter.next();
+            
+            
             List lintDataRecord = new ArrayList();
+            
             // put runid and lint it id
             lintDataRecord.add(dbEnv);
             lintDataRecord.add(dbId);
@@ -163,7 +167,7 @@ public class AdditionalCommand
 
         //initialize CSVPrinter object
         csvFilePrinter = new CSVPrinter(fileWriter, csvFileFormat);
-
+        
         for (final Schema schema : catalog.getSchemas()) {
             for (final Table table : catalog.getTables(schema)) {
                 // for each table, count the number of rows
@@ -176,6 +180,7 @@ public class AdditionalCommand
                         int nbRows = rs.getInt(1);
                         List lintDataRecord = new ArrayList();
                         // runtime datas
+                        
                         lintDataRecord.add(aDbEnv);
                         lintDataRecord.add(aDbId);
                         lintDataRecord.add(aRunId.toString());
