@@ -13,7 +13,7 @@ public class TestCommandPlugin
     throws Exception
   {
     final CommandRegistry registry = new CommandRegistry();
-    assertTrue(registry.getSupportedCommands().contains("csv"));
+    assertTrue(registry.isCommandSupported("csv"));
   }
 
 }
