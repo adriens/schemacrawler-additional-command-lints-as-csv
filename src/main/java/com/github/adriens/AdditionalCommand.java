@@ -117,7 +117,7 @@ public class AdditionalCommand
             lintDataRecord.add(dbEnv);
             lintDataRecord.add(dbId);
             lintDataRecord.add(runId.toString());
-            lintDataRecord.add(UUID.randomUUID().toString());
+            lintDataRecord.add(aLint.getLintId().toString());
 
             lintDataRecord.add(aLint.getLinterId());
             lintDataRecord.add(aLint.getSeverity().toString().toUpperCase());
