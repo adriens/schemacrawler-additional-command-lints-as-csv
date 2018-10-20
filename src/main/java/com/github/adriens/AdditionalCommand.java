@@ -87,10 +87,10 @@ public class AdditionalCommand
         CSVPrinter csvFilePrinter;
         FileWriter fileWriter;
         CSVFormat csvFileFormat = CSVFormat.DEFAULT.withRecordSeparator(NEW_LINE_SEPARATOR);
-        UUID runId = UUID.randomUUID();
+        String runId = catalog.getCrawlInfo().getRunId();
 
-        setLintsFilename(String.format("%s-%s.csv", DEFAULT_LINTS_FILENAME_PREFIX, runId.toString()));
-        LOGGER.log(Level.INFO, String.format("Generating lints for run <%s> ...", runId.toString()));
+        setLintsFilename(String.format("%s-%s.csv", DEFAULT_LINTS_FILENAME_PREFIX, runId));
+        LOGGER.log(Level.INFO, String.format("Generating lints for run <%s> ...", runId));
         final LinterConfigs linterConfigs = LintUtility.readLinterConfigs(lintOptions, getAdditionalConfiguration());
 
         final Linters linters = new Linters(linterConfigs);
@@ -113,11 +113,10 @@ public class AdditionalCommand
             
             List lintDataRecord = new ArrayList();
             
-            // put runid and lint it id
             lintDataRecord.add(dbEnv);
             lintDataRecord.add(dbId);
-            lintDataRecord.add(runId.toString());
-            lintDataRecord.add(UUID.randomUUID().toString());
+            lintDataRecord.add(runId);
+            lintDataRecord.add(aLint.getLintId().toString());
 
             lintDataRecord.add(aLint.getLinterId());
             lintDataRecord.add(aLint.getSeverity().toString().toUpperCase());
@@ -129,7 +128,7 @@ public class AdditionalCommand
         }
         fileWriter.flush();
         fileWriter.close();
-        LOGGER.log(Level.INFO, String.format("Lint runid : <%s> generated.", runId.toString()));
+        LOGGER.log(Level.INFO, String.format("Lint runid : <%s> generated.", runId));
 
         try {
             generateTableRowCountCsv(dbEnv, dbId, runId);
@@ -154,9 +153,9 @@ public class AdditionalCommand
         this.lintsFilename = aLintsFilename;
     }
 
-    public void generateTableRowCountCsv(String aDbEnv, String aDbId, UUID aRunId) throws Exception {
+    public void generateTableRowCountCsv(String aDbEnv, String aDbId, String aRunId) throws Exception {
         LOGGER.log(Level.INFO, "Counting rows for each table ...");
-        String rowCountFilename = String.format("%s-%s-.csv", DEFAULT_LINTS_FILENAME_PREFIX_ROWCOUNT, aRunId.toString());
+        String rowCountFilename = String.format("%s-%s-.csv", DEFAULT_LINTS_FILENAME_PREFIX_ROWCOUNT, aRunId);
         LOGGER.log(Level.INFO, "Putting table row count datas in <" + rowCountFilename + ">");
 
         CSVPrinter csvFilePrinter;
@@ -183,7 +182,7 @@ public class AdditionalCommand
                         
                         lintDataRecord.add(aDbEnv);
                         lintDataRecord.add(aDbId);
-                        lintDataRecord.add(aRunId.toString());
+                        lintDataRecord.add(aRunId);
                         lintDataRecord.add(UUID.randomUUID().toString());
 
                         // table centric datas 
@@ -218,9 +217,9 @@ public class AdditionalCommand
         fileWriter.close();
     }
 
-    public void generateTableColumnsCsv(String aDbEnv, String aDbId, UUID aRunId) throws Exception {
+    public void generateTableColumnsCsv(String aDbEnv, String aDbId, String aRunId) throws Exception {
         LOGGER.log(Level.INFO, "Dumping each column of each table ...");
-        String rowCountFilename = String.format("%s-%s-.csv", DEFAULT_LINTS_FILENAME_PREFIX_COLUMNS, aRunId.toString());
+        String rowCountFilename = String.format("%s-%s-.csv", DEFAULT_LINTS_FILENAME_PREFIX_COLUMNS, aRunId);
         LOGGER.log(Level.INFO, "Putting table row count datas in <" + rowCountFilename + ">");
 
         CSVPrinter csvFilePrinter;
