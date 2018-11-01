@@ -83,7 +83,9 @@ public class AdditionalCommand
         //dbenv
         String dbEnv = additionalConfiguration.getStringValue("dbenv", "").toLowerCase();
         LOGGER.log(Level.INFO, String.format("Got input dbEnv : <%s>", dbEnv));
-
+        String dbName = catalog.getDatabaseInfo().getSchema().toString();
+        LOGGER.log(Level.INFO, String.format("Got input dbName : <%s>", dbName));
+        
         CSVPrinter csvFilePrinter;
         FileWriter fileWriter;
         CSVFormat csvFileFormat = CSVFormat.DEFAULT.withRecordSeparator(NEW_LINE_SEPARATOR);
