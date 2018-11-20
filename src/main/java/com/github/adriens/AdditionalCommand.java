@@ -104,8 +104,7 @@ public class AdditionalCommand
         csvFilePrinter = new CSVPrinter(fileWriter, csvFileFormat);
 
         //Create CSV file header
-        // Do not print headers
-        //csvFilePrinter.printRecord(FILE_HEADER);
+        csvFilePrinter.printRecord(FILE_HEADER);
         
         while (lintIter.hasNext()) {
             aLint = lintIter.next();
@@ -166,7 +165,8 @@ public class AdditionalCommand
 
         //initialize CSVPrinter object
         csvFilePrinter = new CSVPrinter(fileWriter, csvFileFormat);
-        
+        //Create CSV file header
+        csvFilePrinter.printRecord(FILE_HEADER_TABLE_ROW_COUNT);
         for (final Schema schema : catalog.getSchemas()) {
             for (final Table table : catalog.getTables(schema)) {
                 // for each table, count the number of rows
@@ -230,7 +230,8 @@ public class AdditionalCommand
 
         //initialize CSVPrinter object
         csvFilePrinter = new CSVPrinter(fileWriter, csvFileFormat);
-
+        //Create CSV file header
+        csvFilePrinter.printRecord(FILE_HEADER_TABLE_COLUMNS);
         for (final Schema schema : catalog.getSchemas()) {
             for (final Table table : catalog.getTables(schema)) {
                 // for each table, count the number of rows
