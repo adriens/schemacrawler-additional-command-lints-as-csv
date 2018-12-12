@@ -1,5 +1,0 @@
-sclint-dbenv,sclint-dbid,sclint-runid,sclint-hitid,sclint-tableFullName,sclint-tableName,sclint-schemaName,sclint-tableType,sclint-tableNbColumns,sclint-tableNbRows
-"",,244a0a50-7e83-4f95-b4bc-26e2341cc6c4,a6f9bdca-df32-4580-9e61-27dbc91ddc75,public.databasechangelog,databasechangelog,public,TABLE,14,1
-"",,244a0a50-7e83-4f95-b4bc-26e2341cc6c4,fb0acb0b-082d-4a1d-b8a9-cd36f31bff38,public.databasechangeloglock,databasechangeloglock,public,TABLE,4,1
-"",,244a0a50-7e83-4f95-b4bc-26e2341cc6c4,48813ce4-f7f9-48fe-8d64-a7ab14333b48,public.demo_gdpr,demo_gdpr,public,TABLE,1,0
-"",,244a0a50-7e83-4f95-b4bc-26e2341cc6c4,620d591d-9da8-46da-ae0a-9b72ddfac2cb,public.test_xml,test_xml,public,TABLE,3,1024
