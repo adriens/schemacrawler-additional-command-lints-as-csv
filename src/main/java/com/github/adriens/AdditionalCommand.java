@@ -129,6 +129,8 @@ public class AdditionalCommand
     LOGGER.log(Level.INFO, String.format("Got input dbEnv : <%s>", dbEnv));
 
     String dbCatalogName = getDbCatalogName();
+    LOGGER.log(Level.INFO, String.format("DATABASE NAME : <%s>", dbCatalogName));
+
 
     CSVPrinter csvFilePrinter;
     FileWriter fileWriter;
@@ -215,7 +217,12 @@ public class AdditionalCommand
     {
       serverInfoMap.put(serverInfoProperty.getName(),
                         serverInfoProperty.getValue().toString());
+      System.err.println("Key/Value : <" + serverInfoProperty.getName() + "/" + serverInfoProperty.getValue().toString() + ">");
+      
     }
+    System.err.println("Map size : <" + serverInfoMap.size() + ">");
+    LOGGER.info("MAP : " + serverInfoMap.toString());
+    
     if (serverInfoMap.containsKey("SERVICE_NAME"))
     {
       // Oracle SERVICE_NAME
