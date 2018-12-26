@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -22,6 +21,8 @@ import schemacrawler.schema.Column;
 import schemacrawler.schema.Property;
 import schemacrawler.schema.Schema;
 import schemacrawler.schema.Table;
+import schemacrawler.schemacrawler.SchemaCrawlerOptionsBuilder;
+import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
 import schemacrawler.tools.executable.BaseSchemaCrawlerCommand;
 import schemacrawler.tools.lint.Lint;
 import schemacrawler.tools.lint.LintUtility;
@@ -111,7 +112,16 @@ public class AdditionalCommand
   {
     // TODO: Possibly process command-line options, which are available
     // in additionalConfiguration
-
+    
+    // Adjust SchemaInfoLevel to retrieve server info
+    SchemaInfoLevelBuilder schemaInfoLevelBuilder = SchemaInfoLevelBuilder
+      .standard().fromOptions(schemaCrawlerOptions.getSchemaInfoLevel());
+    schemaInfoLevelBuilder.setRetrieveServerInfo(true);
+    SchemaCrawlerOptionsBuilder schemaCrawlerOptionsBuilder = SchemaCrawlerOptionsBuilder.builder()
+      .fromOptions(schemaCrawlerOptions);
+    schemaCrawlerOptionsBuilder.withSchemaInfoLevel(schemaInfoLevelBuilder.toOptions());
+    this.setSchemaCrawlerOptions(schemaCrawlerOptionsBuilder.toOptions());
+    
     // Options
     final LintOptions lintOptions = LintOptionsBuilder.builder()
       .fromConfig(additionalConfiguration).toOptions();
