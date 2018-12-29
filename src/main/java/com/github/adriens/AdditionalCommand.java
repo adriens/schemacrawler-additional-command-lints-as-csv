@@ -21,8 +21,6 @@ import schemacrawler.schema.Column;
 import schemacrawler.schema.Property;
 import schemacrawler.schema.Schema;
 import schemacrawler.schema.Table;
-import schemacrawler.schemacrawler.SchemaCrawlerOptionsBuilder;
-import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
 import schemacrawler.tools.executable.BaseSchemaCrawlerCommand;
 import schemacrawler.tools.lint.Lint;
 import schemacrawler.tools.lint.LintUtility;
@@ -53,7 +51,10 @@ public class AdditionalCommand
   private static final String DEFAULT_LINTS_FILENAME_PREFIX_COLUMNS = "schemacrawler-columns";
   private static final String NEW_LINE_SEPARATOR = "\n";
   private static final Object[] FILE_HEADER = {
-                                                "sclint-dbenv,sclint-dbid,sclint-runid",
+                                                "sclint-dbenv",
+                                                "sclint-dbid",
+                                                "sclint-sid",
+                                                "sclint-runid",
                                                 "sclint-hitid",
                                                 "sclint-linterId",
                                                 "sclint-severity",
@@ -63,6 +64,7 @@ public class AdditionalCommand
   private static final Object[] FILE_HEADER_TABLE_ROW_COUNT = {
                                                                 "sclint-dbenv",
                                                                 "sclint-dbid",
+                                                                "sclint-sid",
                                                                 "sclint-runid",
                                                                 "sclint-hitid",
                                                                 "sclint-tableFullName",
@@ -74,6 +76,7 @@ public class AdditionalCommand
   private static final Object[] FILE_HEADER_TABLE_COLUMNS = {
                                                               "sclint-dbenv",
                                                               "sclint-dbid",
+                                                              "sclint-sid",
                                                               "sclint-runid",
                                                               "sclint-schema-name",
                                                               "sclint-table-name",
@@ -169,6 +172,7 @@ public class AdditionalCommand
 
       lintDataRecord.add(dbEnv);
       lintDataRecord.add(dbId);
+      lintDataRecord.add(getDbCatalogName());
       lintDataRecord.add(runId);
       lintDataRecord.add(aLint.getLintId().toString());
 
@@ -219,11 +223,7 @@ public class AdditionalCommand
     {
       serverInfoMap.put(serverInfoProperty.getName(),
                         serverInfoProperty.getValue().toString());
-      System.err.println("Key/Value : <" + serverInfoProperty.getName() + "/"
-                         + serverInfoProperty.getValue().toString() + ">");
-
     }
-    System.err.println("Map size : <" + serverInfoMap.size() + ">");
     LOGGER.info("MAP : " + serverInfoMap.toString());
 
     if (serverInfoMap.containsKey("SERVICE_NAME"))
@@ -301,6 +301,7 @@ public class AdditionalCommand
 
             lintDataRecord.add(aDbEnv);
             lintDataRecord.add(aDbId);
+            lintDataRecord.add(getDbCatalogName());
             lintDataRecord.add(aRunId);
             lintDataRecord.add(UUID.randomUUID().toString());
 
@@ -400,6 +401,7 @@ public class AdditionalCommand
           // runtime datas
           lintDataRecord.add(aDbEnv);
           lintDataRecord.add(aDbId);
+          lintDataRecord.add(getDbCatalogName());
           lintDataRecord.add(aRunId);
 
           lintDataRecord.add(table.getSchema().getName());
