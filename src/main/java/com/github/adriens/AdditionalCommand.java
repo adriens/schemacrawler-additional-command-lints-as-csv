@@ -112,16 +112,7 @@ public class AdditionalCommand
   {
     // TODO: Possibly process command-line options, which are available
     // in additionalConfiguration
-    
-    // Adjust SchemaInfoLevel to retrieve server info
-    SchemaInfoLevelBuilder schemaInfoLevelBuilder = SchemaInfoLevelBuilder
-      .standard().fromOptions(schemaCrawlerOptions.getSchemaInfoLevel());
-    schemaInfoLevelBuilder.setRetrieveServerInfo(true);
-    SchemaCrawlerOptionsBuilder schemaCrawlerOptionsBuilder = SchemaCrawlerOptionsBuilder.builder()
-      .fromOptions(schemaCrawlerOptions);
-    schemaCrawlerOptionsBuilder.withSchemaInfoLevel(schemaInfoLevelBuilder.toOptions());
-    this.setSchemaCrawlerOptions(schemaCrawlerOptionsBuilder.toOptions());
-    
+
     // Options
     final LintOptions lintOptions = LintOptionsBuilder.builder()
       .fromConfig(additionalConfiguration).toOptions();
@@ -222,17 +213,19 @@ public class AdditionalCommand
   private String getDbCatalogName()
   {
     String dbCatalogName = "";
-    Map<String, String> serverInfoMap = new HashMap<>();
-    for (Property serverInfoProperty: catalog.getDatabaseInfo().getServerInfo())
+    final Map<String, String> serverInfoMap = new HashMap<>();
+    for (final Property serverInfoProperty: catalog.getDatabaseInfo()
+      .getServerInfo())
     {
       serverInfoMap.put(serverInfoProperty.getName(),
                         serverInfoProperty.getValue().toString());
-      System.err.println("Key/Value : <" + serverInfoProperty.getName() + "/" + serverInfoProperty.getValue().toString() + ">");
-      
+      System.err.println("Key/Value : <" + serverInfoProperty.getName() + "/"
+                         + serverInfoProperty.getValue().toString() + ">");
+
     }
     System.err.println("Map size : <" + serverInfoMap.size() + ">");
     LOGGER.info("MAP : " + serverInfoMap.toString());
-    
+
     if (serverInfoMap.containsKey("SERVICE_NAME"))
     {
       // Oracle SERVICE_NAME
@@ -240,7 +233,7 @@ public class AdditionalCommand
     }
     else if (serverInfoMap.containsKey("current_database"))
     {
-      // PostgreSQL SERVICE_NAME
+      // PostgreSQL current_database
       dbCatalogName = serverInfoMap.get("current_database");
     }
     else if (serverInfoMap.containsKey("ServerName"))
@@ -252,7 +245,7 @@ public class AdditionalCommand
     {
       // HyperSQL (HSQLDB) CATALOG_NAME
       dbCatalogName = serverInfoMap.get("CATALOG_NAME");
-    }     
+    }
 
     return dbCatalogName;
   }
