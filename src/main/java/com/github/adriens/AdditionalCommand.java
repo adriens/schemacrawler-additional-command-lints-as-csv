@@ -53,7 +53,7 @@ public class AdditionalCommand
   private static final Object[] FILE_HEADER = {
                                                 "sclint-dbenv",
                                                 "sclint-dbid",
-                                                "sclint-sid",
+                                                "sclint-catalogName",
                                                 "sclint-runid",
                                                 "sclint-hitid",
                                                 "sclint-linterId",
@@ -64,7 +64,7 @@ public class AdditionalCommand
   private static final Object[] FILE_HEADER_TABLE_ROW_COUNT = {
                                                                 "sclint-dbenv",
                                                                 "sclint-dbid",
-                                                                "sclint-sid",
+                                                                "sclint-catalogName",
                                                                 "sclint-runid",
                                                                 "sclint-hitid",
                                                                 "sclint-tableFullName",
@@ -76,7 +76,7 @@ public class AdditionalCommand
   private static final Object[] FILE_HEADER_TABLE_COLUMNS = {
                                                               "sclint-dbenv",
                                                               "sclint-dbid",
-                                                              "sclint-sid",
+                                                              "sclint-catalogName",
                                                               "sclint-runid",
                                                               "sclint-schema-name",
                                                               "sclint-table-name",
@@ -172,7 +172,7 @@ public class AdditionalCommand
 
       lintDataRecord.add(dbEnv);
       lintDataRecord.add(dbId);
-      lintDataRecord.add(getDbCatalogName());
+      lintDataRecord.add(dbCatalogName);
       lintDataRecord.add(runId);
       lintDataRecord.add(aLint.getLintId().toString());
 
@@ -226,7 +226,7 @@ public class AdditionalCommand
     }
     LOGGER.info("MAP : " + serverInfoMap.toString());
 
-    if (serverInfoMap.containsKey("SERVICE_NAME"))
+    if (serverInfoMap.containsKey("GLOBAL_NAME"))
     {
       // Oracle GLOBAL_NAME
       dbCatalogName = serverInfoMap.get("GLOBAL_NAME");
@@ -293,6 +293,7 @@ public class AdditionalCommand
         {
           stmt = connection.createStatement();
           ResultSet rs = stmt.executeQuery(sql);
+          String dbCatalogName = getDbCatalogName();
           while (rs.next())
           {
             int nbRows = rs.getInt(1);
@@ -301,7 +302,7 @@ public class AdditionalCommand
 
             lintDataRecord.add(aDbEnv);
             lintDataRecord.add(aDbId);
-            lintDataRecord.add(getDbCatalogName());
+            lintDataRecord.add(dbCatalogName);
             lintDataRecord.add(aRunId);
             lintDataRecord.add(UUID.randomUUID().toString());
 
@@ -377,7 +378,7 @@ public class AdditionalCommand
         String lTableFullName = table.getFullName();
         String lTableRemarks = table.getRemarks();
         String lTableType = table.getTableType().getTableType();
-
+        String dbCatalogName = getDbCatalogName();
         // fetch columns
         for (final Column column: table.getColumns())
         {
@@ -401,7 +402,7 @@ public class AdditionalCommand
           // runtime datas
           lintDataRecord.add(aDbEnv);
           lintDataRecord.add(aDbId);
-          lintDataRecord.add(getDbCatalogName());
+          lintDataRecord.add(dbCatalogName);
           lintDataRecord.add(aRunId);
 
           lintDataRecord.add(table.getSchema().getName());
