@@ -228,8 +228,8 @@ public class AdditionalCommand
 
     if (serverInfoMap.containsKey("SERVICE_NAME"))
     {
-      // Oracle SERVICE_NAME
-      dbCatalogName = serverInfoMap.get("SERVICE_NAME");
+      // Oracle GLOBAL_NAME
+      dbCatalogName = serverInfoMap.get("GLOBAL_NAME");
     }
     else if (serverInfoMap.containsKey("current_database"))
     {
