@@ -243,7 +243,7 @@ public class AdditionalCommand
     }
     else if (serverInfoMap.containsKey("CATALOG_NAME"))
     {
-      // HyperSQL (HSQLDB) CATALOG_NAME
+      // HyperSQL (HSQLDB) CATALOG_NAME 
       dbCatalogName = serverInfoMap.get("CATALOG_NAME");
     }
 
