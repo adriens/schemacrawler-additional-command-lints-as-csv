@@ -33,7 +33,7 @@
     
         <!-- test dependencies versions -->
         <junit.version>4.12</junit.version>
-        <hsqldb.version>2.4.1</hsqldb.version>
+        <hsqldb.version>2.5.0</hsqldb.version>
         
         <!-- Lint specific dependencies -->
         <commons-csv.version>1.6</commons-csv.version>
