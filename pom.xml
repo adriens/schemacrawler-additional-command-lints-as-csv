@@ -29,7 +29,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
         <!-- Core schemacrawler -->
-        <schemacrawler.version>15.04.01</schemacrawler.version>
+        <schemacrawler.version>16.5.0</schemacrawler.version>
     
         <!-- test dependencies versions -->
         <junit.version>4.12</junit.version>
