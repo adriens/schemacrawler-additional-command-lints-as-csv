@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.adriens</groupId>
     <artifactId>schemacrawler-additional-command-csv</artifactId>
-    <version>1.5-SNAPSHOT</version>
+    <version>1.6-SNAPSHOT</version>
     <name>SchemaCrawler csv lint exporter</name>
     <description>Schemacrawler command extension that produces a csv
         of the lints, hence making it integrable wth other reporting tools.
@@ -23,26 +23,26 @@
         <developerConnection>scm:git:git@github.com:adriens/schemacrawler-additional-command-lints-as-csv.git</developerConnection>
         <url>https://github.com/adriens/schemacrawler-additional-command-lints-as-csv/issues</url>
     </scm>
-    
+
     <properties>
         <!-- Core properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        
+
         <!-- Core schemacrawler -->
-        <schemacrawler.version>15.04.01</schemacrawler.version>
-    
+        <schemacrawler.version>16.9.4</schemacrawler.version>
+
         <!-- test dependencies versions -->
         <junit.version>4.12</junit.version>
         <hsqldb.version>2.4.1</hsqldb.version>
-        
+
         <!-- Lint specific dependencies -->
         <commons-csv.version>1.6</commons-csv.version>
-        
+
         <!-- Compile properties -->
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
     </properties>
-  
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -72,7 +72,7 @@
             <version>${commons-csv.version}</version>
         </dependency>
     </dependencies>
-  
+
     <build>
         <plugins>
             <plugin>
