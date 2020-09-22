@@ -1,13 +1,13 @@
 package com.github.adriens;
 
 
-import schemacrawler.schemacrawler.Config;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.schemacrawler.SchemaCrawlerOptions;
 import schemacrawler.tools.executable.CommandDescription;
 import schemacrawler.tools.executable.CommandProvider;
 import schemacrawler.tools.executable.SchemaCrawlerCommand;
 import schemacrawler.tools.executable.commandline.PluginCommand;
+import schemacrawler.tools.options.Config;
 import schemacrawler.tools.options.OutputOptions;
 
 import java.util.Arrays;
