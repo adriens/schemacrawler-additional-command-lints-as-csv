@@ -97,12 +97,8 @@ public class AdditionalCommand
   {
     // TODO: Possibly process command-line options, which are available
     // in additionalConfiguration
+    additionalConfiguration.keySet().stream().forEach(e ->LOGGER.log(Level.INFO, "key:"+e));
 
-    // Options
-    final LintOptions lintOptions = LintOptionsBuilder.builder()
-            .fromConfig(additionalConfiguration).toOptions();
-    // setLintsFilename(additionalConfiguration.getStringValue("outputfile",
-    // DEFAULT_LINTS_FILENAME));
 
     // get and set dbid
     String dbId = additionalConfiguration.getStringValue("dbid", "");
@@ -117,62 +113,25 @@ public class AdditionalCommand
     String dbCatalogName = getDbCatalogName();
     LOGGER.log(Level.INFO, String.format("DATABASE NAME : <%s>", dbCatalogName));
 
-
-    CSVPrinter csvFilePrinter;
-    FileWriter fileWriter;
-    CSVFormat csvFileFormat = CSVFormat.DEFAULT
-            .withRecordSeparator(NEW_LINE_SEPARATOR);
     String runId = catalog.getCrawlInfo().getRunId();
 
-    setLintsFilename(String
-            .format("%s-%s.csv", DEFAULT_LINTS_FILENAME_PREFIX, runId));
-    LOGGER.log(Level.INFO,
-            String.format("Generating lints for run <%s> ...", runId));
-    final LinterConfigs linterConfigs = LintUtility
-            .readLinterConfigs(lintOptions, getAdditionalConfiguration());
-
-    final Linters linters = new Linters(linterConfigs, false);
-    linters.lint(catalog, connection);
-
-    final LintCollector lintCollector = linters.getCollector();
-
-    // feed the csv
-    fileWriter = new FileWriter(getLintsFilename());
-
-    // initialize CSVPrinter object
-    csvFilePrinter = new CSVPrinter(fileWriter, csvFileFormat);
-
-    // Create CSV file header
-    csvFilePrinter.printRecord(FILE_HEADER);
-
-    for (Lint aLint : lintCollector.getLints()) {
-
-      List lintDataRecord = new ArrayList();
-      lintDataRecord.add(dbEnv);
-      lintDataRecord.add(dbId);
-      lintDataRecord.add(dbCatalogName);
-      lintDataRecord.add(runId);
-      lintDataRecord.add(aLint.getLintId().toString());
-
-      lintDataRecord.add(aLint.getLinterId());
-      lintDataRecord.add(aLint.getSeverity().toString().toUpperCase());
-      lintDataRecord.add(aLint.getObjectName());
-      lintDataRecord.add(aLint.getMessage());
-      lintDataRecord.add(aLint.getValueAsString());
-
-      csvFilePrinter.printRecord(lintDataRecord);
-    }
-    fileWriter.flush();
-    fileWriter.close();
-    LOGGER.log(Level.INFO,
-            String.format("Lint runid : <%s> generated.", runId));
 
     try
     {
-      generateTableRowCountCsv(dbEnv, dbId, runId);
+      generateLintsCsv(dbEnv, dbId, runId, dbCatalogName);
     }
     catch (Exception ex)
     {
+      LOGGER.log(Level.SEVERE,
+              "Was not able to perform lint operation : "
+                      + ex.getMessage());
+      throw ex;
+    }
+
+
+    try{
+      generateTableRowCountCsv(dbEnv, dbId, runId);
+    } catch (Exception ex) {
       LOGGER.log(Level.SEVERE,
               "Was not able to perform table row count operation : "
                       + ex.getMessage());
@@ -221,7 +180,7 @@ public class AdditionalCommand
     }
     else if (serverInfoMap.containsKey("CATALOG_NAME"))
     {
-      // HyperSQL (HSQLDB) CATALOG_NAME 
+      // HyperSQL (HSQLDB) CATALOG_NAME
       dbCatalogName = serverInfoMap.get("CATALOG_NAME");
     }
 
@@ -236,6 +195,71 @@ public class AdditionalCommand
   public void setLintsFilename(String aLintsFilename)
   {
     this.lintsFilename = aLintsFilename;
+  }
+
+
+  private void generateLintsCsv(String aDbEnv,
+                                String aDbId,
+                                String aRunId,
+                                String aDbCatalogName)
+          throws Exception
+  {
+
+    // Options
+    final LintOptions lintOptions = LintOptionsBuilder.builder()
+            .fromConfig(additionalConfiguration).toOptions();
+    // setLintsFilename(additionalConfiguration.getStringValue("outputfile",
+    // DEFAULT_LINTS_FILENAME));
+
+    CSVPrinter csvFilePrinter;
+    FileWriter fileWriter;
+    CSVFormat csvFileFormat = CSVFormat.DEFAULT
+            .withRecordSeparator(NEW_LINE_SEPARATOR);
+
+
+    setLintsFilename(String
+            .format("%s-%s.csv", DEFAULT_LINTS_FILENAME_PREFIX, aRunId));
+    LOGGER.log(Level.INFO,
+            String.format("Generating lints for run <%s> ...", aRunId));
+    final LinterConfigs linterConfigs = LintUtility
+            .readLinterConfigs(lintOptions, getAdditionalConfiguration());
+    final Linters linters = new Linters(linterConfigs, true);
+    linters.lint(catalog, connection);
+
+    final LintCollector lintCollector = linters.getCollector();
+
+    // feed the csv
+    fileWriter = new FileWriter(getLintsFilename());
+
+    // initialize CSVPrinter object
+    csvFilePrinter = new CSVPrinter(fileWriter, csvFileFormat);
+
+    // Create CSV file header
+    csvFilePrinter.printRecord(FILE_HEADER);
+    LOGGER.log(Level.CONFIG, lintCollector.getLints().size()+"");
+    for (Lint aLint : lintCollector.getLints()) {
+
+      List lintDataRecord = new ArrayList();
+      lintDataRecord.add(aDbEnv);
+      lintDataRecord.add(aDbId);
+      lintDataRecord.add(aDbCatalogName);
+      lintDataRecord.add(aRunId);
+      lintDataRecord.add(aLint.getLintId().toString());
+
+      lintDataRecord.add(aLint.getLinterId());
+      lintDataRecord.add(aLint.getSeverity().toString().toUpperCase());
+      lintDataRecord.add(aLint.getObjectName());
+      lintDataRecord.add(aLint.getMessage());
+      lintDataRecord.add(aLint.getValueAsString());
+
+      LOGGER.log(Level.CONFIG, aLint.toString());
+      csvFilePrinter.printRecord(lintDataRecord);
+    }
+    fileWriter.flush();
+    fileWriter.close();
+    LOGGER.log(Level.CONFIG,
+            String.format("Lint runid : <%s> generated.", aRunId));
+
   }
 
   public void generateTableRowCountCsv(String aDbEnv,

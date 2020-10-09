@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.adriens</groupId>
     <artifactId>schemacrawler-additional-command-csv</artifactId>
-    <version>1.7</version>
+    <version>1.8</version>
     <name>SchemaCrawler csv lint exporter</name>
     <description>Schemacrawler command extension that produces a csv
         of the lints, hence making it integrable wth other reporting tools.
@@ -60,11 +60,13 @@
             <groupId>us.fatehi</groupId>
             <artifactId>schemacrawler</artifactId>
             <version>${schemacrawler.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>us.fatehi</groupId>
             <artifactId>schemacrawler-lint</artifactId>
             <version>${schemacrawler.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
