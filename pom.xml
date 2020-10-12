@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.adriens</groupId>
-    <artifactId>schemacrawler-additional-command-csv</artifactId>
-    <version>1.9</version>
+    <artifactId>schemacrawler-additional-command-lints-as-csv</artifactId>
+    <version>1.10</version>
     <name>SchemaCrawler csv lint exporter</name>
     <description>Schemacrawler command extension that produces a csv
         of the lints, hence making it integrable wth other reporting tools.
