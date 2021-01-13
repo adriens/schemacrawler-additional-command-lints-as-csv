@@ -6,3 +6,4 @@
 .idea
 schemacrawler-additional-command-csv.iml
 /schemacrawler-additional-command-lints-as-csv.iml
+/dependency-reduced-pom.xml
