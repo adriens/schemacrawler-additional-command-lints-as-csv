@@ -1,0 +1,29 @@
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "18:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: us.fatehi:schemacrawler-lint
+    versions:
+    - 16.11.7
+    - 16.12.1
+    - 16.12.2
+    - 16.12.3
+    - 16.14.1
+    - 16.14.2
+    - 16.14.3
+    - 16.14.4
+  - dependency-name: us.fatehi:schemacrawler
+    versions:
+    - 16.11.7
+    - 16.12.1
+    - 16.12.2
+    - 16.12.3
+    - 16.14.1
+    - 16.14.2
+    - 16.14.3
+    - 16.14.4
